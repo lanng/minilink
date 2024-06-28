@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UrlController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,4 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/counter', [UrlController::class, 'index'])->name('counter');
+Route::post('/createShortUrl', [UrlController::class, 'store'])->name('createShortUrl');
+Route::get('{shortener_url}', [UrlController::class, 'shortUrl'])->name('shortener-url');
 require __DIR__.'/auth.php';
