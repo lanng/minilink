@@ -9,28 +9,39 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 grid justify-items-center">
-                    <h1 class="font-bold">Criador de links</h1>
-                    <form class="mt-6" method="POST" action="{{ route('createShortUrl') }}">
-                        @csrf
-                        <x-input-label for="title" value='Título'/>
-                        <x-text-input id="title" class="block mt-1" type="text" name="title" :value="old('title')"
-                                      required autofocus/>
-                        <x-input-error :messages="$errors->get('title')" class="mt-2"/>
-
-                        <div class="mt-2">
-                            <x-input-label for="url" value='URL grande'/>
-                            <x-text-input id="url" class="block mt-1" type="text" name="url" :value="old('url')"
-                                          required autofocus/>
-                            <x-input-error :messages="$errors->get('url')" class="mt-2"/>
-                        </div>
-
-                        <x-primary-button class="mt-3">
-                            {{ 'Gerar mini link' }}
-                        </x-primary-button>
-                        <div class="mt-2 text-red-600 font-bold">
-                            {{ $redirect_error ?? '' }}
-                        </div>
-                    </form>
+                    <h1 class="font-bold mb-12 text-lg">MiniLinks Ativos</h1>
+                    <table class="border-collapse table-auto w-full text-sm">
+                        <thead>
+                        <tr>
+                            <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                Título
+                            </th>
+                            <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                MiniLink
+                            </th>
+                            <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                Acessos Realizados
+                            </th>
+                            <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                Opções
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="bg-white dark:bg-slate-800">
+                        @foreach($links as $link)
+                            <tr>
+                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{{ $link->title ?? '' }}</td>
+                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                                    localhost/{{ $link->shortener_url ?? ''}}</td>
+                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{{ $link->clicks ?? '' }}</td>
+                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                                    <x-secondary-button>{{ 'Editar' }}</x-secondary-button>
+                                    <x-danger-button>{{ 'Deletar' }}</x-danger-button>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

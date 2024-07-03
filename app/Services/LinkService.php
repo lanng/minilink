@@ -40,7 +40,10 @@ class LinkService
     public function getOriginalUrl(Request $request)
     {
         $url = Link::where('shortener_url', $request->shortener_url)->get();
+        $link_data = $url[0];
         if ($url != '[]'){
+            $link_data['clicks'] = $url[0]->clicks + 1;
+            $url[0]->update($link_data->toArray());
             return $url;
         }
         return '404';
