@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UrlController;
 use Illuminate\Support\Facades\Route;
 
+require __DIR__.'/auth.php';
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,4 +22,3 @@ Route::middleware('auth')->group(function () {
 Route::get('/counter', [UrlController::class, 'index'])->name('counter');
 Route::post('/createShortUrl', [UrlController::class, 'store'])->name('createShortUrl');
 Route::get('{shortener_url}', [UrlController::class, 'shortUrl'])->name('shortener-url');
-require __DIR__.'/auth.php';
