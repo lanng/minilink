@@ -13,12 +13,12 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Criador de MiniLink') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('counter')">
-                        {{ __('Contador de clicks') }}
+                    <x-nav-link :href="route('counter')" :active="request()->routeIs('counter')">
+                        {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
             </div>

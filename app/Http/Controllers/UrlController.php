@@ -15,13 +15,13 @@ class UrlController extends Controller
     public function index()
     {
         $links = $this->linkService->list();
-        return view('counter', ['links' => $links]);
+        return view('dashboard', ['links' => $links]);
     }
 
     public function store(LinkStoreRequest $request)
     {
         $link = $this->linkService->store($request);
-        return view('dashboard', $link);
+        return view('create-link', ['link' => 'localhost/' . $link->shortener_url]);
     }
     public function shortUrl(Request $request)
     {
