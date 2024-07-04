@@ -10,6 +10,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 grid justify-items-center">
                     <h1 class="font-bold mb-12 text-lg">MiniLinks Ativos</h1>
+                    <div class="text-lg text-green-600">
+                        {{ $message ?? '' }}
+                    </div>
                     <table class="border-collapse table-auto w-full text-sm">
                         <thead>
                         <tr>
@@ -35,8 +38,11 @@
                                     localhost/{{ $link->shortener_url ?? ''}}</td>
                                 <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{{ $link->clicks ?? '' }}</td>
                                 <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
-                                    <x-secondary-button>{{ 'Editar' }}</x-secondary-button>
-                                    <x-danger-button>{{ 'Deletar' }}</x-danger-button>
+                                    <form method="POST" action="{{ route('url.destroy', $link) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <x-danger-button>{{ __('Excluir') }}</x-danger-button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

@@ -48,4 +48,10 @@ class LinkService
         }
         return '404';
     }
+
+    public function destroy(Link $link)
+    {
+        $link->delete();
+        return $this->list();
+    }
 }

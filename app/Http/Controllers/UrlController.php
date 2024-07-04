@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LinkStoreRequest;
+use App\Models\Link;
 use App\Services\LinkService;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
+use Termwind\Components\Li;
 
 class UrlController extends Controller
 {
@@ -30,5 +32,11 @@ class UrlController extends Controller
             return redirect($url[0]->original_url);
         }
         return view('not-found', ['redirect_error' => 'Link incorreto']);
+    }
+
+    public function destroy(Link $link)
+    {
+        $urls = $this->linkService->destroy($link);
+        return view('dashboard', ['links' => $urls, 'message' => 'MiniLink deletado!']);
     }
 }

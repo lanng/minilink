@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 grid justify-items-center">
                     <h1 class="font-bold">Criador de links</h1>
-                    <form class="mt-6" method="POST" action="{{ route('createShortUrl') }}">
+                    <form class="mt-6" method="POST" action="{{ route('url.store') }}">
                         @csrf
                         <x-input-label for="title" value='Título'/>
                         <x-text-input id="title" class="block mt-1" type="text" name="title" :value="old('title')"
