@@ -23,7 +23,7 @@ class UrlController extends Controller
     public function store(LinkStoreRequest $request)
     {
         $link = $this->linkService->store($request);
-        return view('create-link', ['link' => 'localhost/' . $link->shortener_url]);
+        return view('create-link', ['link' => $link->shortener_url]);
     }
     public function shortUrl(Request $request)
     {

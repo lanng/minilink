@@ -21,7 +21,7 @@ class LinkService
         $link_data['user_id'] = auth()->user()->id;
         $link_data['title'] = $request->title;
         $link_data['original_url'] = $request->url;
-        $link_data['shortener_url'] = $this->getRandomUrl();
+        $link_data['shortener_url'] = $request->getHttpHost() . '/' . $this->getRandomUrl();
 
         $link = Link::create($link_data);
         return $link;

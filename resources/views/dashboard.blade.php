@@ -35,7 +35,7 @@
                             <tr>
                                 <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{{ $link->title ?? '' }}</td>
                                 <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
-                                    localhost/{{ $link->shortener_url ?? ''}}</td>
+                                    {{ $link->shortener_url ?? ''}}</td>
                                 <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{{ $link->clicks ?? '' }}</td>
                                 <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
                                     <form method="POST" action="{{ route('url.destroy', $link) }}">

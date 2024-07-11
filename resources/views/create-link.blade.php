@@ -28,7 +28,7 @@
                             {{ 'Gerar mini link' }}
                         </x-primary-button>
                         <div class="mt-2 font-bold">
-                            {{      $link ?? '' }}
+                            {{  $link ?? '' }}
                         </div>
                         <div class="mt-2 text-red-600 font-bold">
                             {{ $redirect_error ?? '' }}
