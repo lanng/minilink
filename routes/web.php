@@ -19,9 +19,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/dashboard', [UrlController::class, 'index'])->name('counter');
     Route::post('/createShortUrl', [UrlController::class, 'store'])->name('url.store');
-    Route::get('{shortener_url}', [UrlController::class, 'shortUrl'])->name('shortener-url');
     Route::patch('/dashboard/{link}', [UrlController::class, 'update'])->name('url.update');
     Route::delete('/dashboard/{link}', [UrlController::class, 'destroy'])->name('url.destroy');
 });
+Route::get('{shortener_url}', [UrlController::class, 'shortUrl'])->name('shortener-url');
 
 
