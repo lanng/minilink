@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('original_url');
             $table->text('shortener_url');
+            $table->string('token');
             $table->integer('clicks')->default(0);
             $table->softDeletes();
             $table->timestamps();

@@ -18,11 +18,12 @@ class LinkService
 
     public function store(LinkStoreRequest $request)
     {
+        $token = $this->getRandomUrl();
         $link_data['user_id'] = auth()->user()->id;
         $link_data['title'] = $request->title;
         $link_data['original_url'] = $request->url;
-        $link_data['shortener_url'] = $request->getHttpHost() . '/' . $this->getRandomUrl();
-
+        $link_data['token'] = $token;
+        $link_data['shortener_url'] = $request->getHttpHost() . '/' . $token;
         $link = Link::create($link_data);
         return $link;
     }
@@ -37,9 +38,9 @@ class LinkService
         return $url;
     }
 
-    public function getOriginalUrl(Request $request)
+    public function getOriginalUrl($shortenerUrl)
     {
-        $url = Link::where('shortener_url', $request->shortener_url)->get();
+        $url = Link::where('token', $shortenerUrl)->get();
         $link_data = $url[0];
         if ($url != '[]'){
             $link_data['clicks'] = $url[0]->clicks + 1;

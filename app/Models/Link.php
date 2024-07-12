@@ -14,6 +14,7 @@ class Link extends Model
         'user_id',
         'title',
         'original_url',
+        'token',
         'shortener_url',
     ];
 }

@@ -25,9 +25,9 @@ class UrlController extends Controller
         $link = $this->linkService->store($request);
         return view('create-link', ['link' => $link->shortener_url]);
     }
-    public function shortUrl(Request $request)
+    public function shortUrl($shortnerUrl)
     {
-        $url = $this->linkService->getOriginalUrl($request);
+        $url = $this->linkService->getOriginalUrl($shortnerUrl);
         if ($url != '404'){
             return redirect($url[0]->original_url);
         }
